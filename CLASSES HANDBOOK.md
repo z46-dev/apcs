@@ -9,7 +9,7 @@ By Evan Parker
 <a href="#inhereted-classes-and-polymorphism">Inhereted Classes and Polymorphism</a><br/>
 
 ## Static vs Non-Static
-In a class, you can have static and non-static methods and variables. A <b>static</b> variable or method is globally accessible from other classes (if public) or instances of its own class (if public OR private). <b>Non-Static</b> methods and variables are unique to the instance of the class they are  written in. They can be accessed from other classes (if public) from the instance variable, or inside the class with `this.<name>`.
+In a class, you can have static and non-static methods and variables. A **static** variable or method is globally accessible from other classes (if public) or instances of its own class (if public OR private). **Non-Static** methods and variables are unique to the instance of the class they are  written in. They can be accessed from other classes (if public) from the instance variable, or inside the class with `this.<name>`.
 
 ```java
 public class Circle {
@@ -53,6 +53,16 @@ public class Client {
 ```
 
 ## Public vs Private
+Both static and non-static variables can be both public or private. However, the behavior of static and non-static variables is slightly different.
+
+A **public static** variable is accessible outside of the class like you would access any static variable. It's public to other classes, and its own.
+
+A **private static** variable is accessible only within the class it's declared in.
+
+A **public non-static** variable is accessible outside the instance and inside. However, it must be accessed through the instance of the class it was created from. *No getters or setters are needed for this type of variable.*
+
+A **private non-static** variable is only accessible by the class it was instantiated in. *You must use public getters and setters to access or modify this variable outside the class.*
+
 ## Constructors and Method Overloading
 ## Default Methods
 ## Instance Variables and Multiple Classes
