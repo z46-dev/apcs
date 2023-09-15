@@ -144,6 +144,8 @@ class Rectangle {
     private double w = 0;
     private double h = 0;
 
+    // 1st version of a constructor for Rectangle:
+    // 3 params
     public Rectangle(double x, double y, double size) {
         this.x = x;
         this.y = y;
@@ -151,6 +153,8 @@ class Rectangle {
         this.h = size;
     }
 
+    // 2nd version of a constructor for Rectangle:
+    // 4 params
     public Rectangle(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
@@ -158,10 +162,64 @@ class Rectangle {
         this.h = height;
     }
 
-    
+    // Similar thing done for these two.
+
+    public double combinedPerimeter(Rectangle r2) {
+        return this.w * 2 + this.h * 2 + r2.w * 2 + r2.h * 2;
+    }
+
+    public double combinedPerimeter(Rectangle r2, Rectangle r3) {
+        return this.w * 2 + this.h * 2 + r2.w * 2 + r2.h * 2 + r3.w * 2 + r3.h * 2;
+    }
+}
+
+public class Client {
+    public static void main(String[] main) {
+        // Using overloaded constructors and methods:
+        Rectangle r1 = new Rectangle(0, 0, 5);
+        Rectangle r2 = new Rectangle(-2, 5.5, 3, 7);
+        Rectangle r3 = new Rectangle(-1e4, 2.334, 5, 8);
+
+        System.out.println("The combined perimeter of r1 & r2 is " + r1.combinedPerimeter(r2));
+
+        System.out.println("The combined perimeter of r1, r2, & r3 is " + r1.combinedPerimeter(r2, r3));
+    }
 }
 ```
 
 ## Default Methods
+When we create a class, it comes with a few preloaded methods for our convenience. Here's a happy little list:
+`toString(), equals(), hashCode(), getClass(), clone(), finalize(), notify(), notifyAll(), wait()`.
+
+### toString()
+The default `toString()` method takes the name of the class, and adds a `@` symbol, then adds the value of `hashCode()` to the end of the string. This can return something like `MyClass@6d06d69c`. Many developers **override** this method to return more useful information like this:
+```java
+public class Circle {
+    private double x, y, radius = 0;
+
+    public String toString() {
+        return "The circle is at (" + this.x ", " + this.y + "), and has a radius of " + this.radius;
+    }
+}
+```
+
+### equals()
+The default `equals()` method tests if two Objects (of the same type) are equal to one another by simply running `this == object`. (Sometimes this is automatically changed in certain default classes). This method is often **overridden** like this:
+```java
+public class Circle {
+    private double x, y, radius = 0;
+
+    public boolean equals(Circle other) {
+        if (other instanceof Circle) {
+            return this.x == other.x && this.y == other.y && this.radius == other.radius;
+        }
+
+        return false;
+    }
+}
+```
+
+The rest of these methods are often used for utility and multi-threading purposes under the hood in java.
+
 ## Instance Variables and Multiple Classes
 ## Inhereted Classes and Polymorphism
