@@ -19,5 +19,7 @@ public class CoinClient {
 
         System.out.println("Heads: " + heads);
         System.out.println("Tails: " + tails);
+
+        System.out.println(coin);
     }
 }
