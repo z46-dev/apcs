@@ -63,7 +63,105 @@ A **public non-static** variable is accessible outside the instance and inside. 
 
 A **private non-static** variable is only accessible by the class it was instantiated in. *You must use public getters and setters to access or modify this variable outside the class.*
 
+```java
+public class Rectangle {
+    // This can only be accessed inside the Rectangle class methods.
+    private static int rectanglesCreated = 0;
+
+    // A public static function, can be accessed in and out of the class.
+    public static boolean collides(Rectangle r1, Rectangle r2) {
+        return r1.intersects(r2);
+    }
+
+    // Privates!
+    private double x, y, width, height = 0;
+
+    public Rectangle(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+
+        // Example of how to use a private static variable
+        Rectangle.rectanglesCreated ++;
+        System.out.println("We've created " + Rectangle.rectanglesCreated + " rectangles!");
+    }
+
+    // Public methods
+    public double getX1() {
+        return this.x - this.width / 2;
+    }
+
+    public double getY1() {
+        return this.y - this.height / 2;
+    }
+
+    public double getX2() {
+        return this.x + this.width / 2;
+    }
+
+    public double getY2() {
+        return this.y + this.height / 2;
+    }
+
+    public boolean intersects(Rectangle otherRect) {
+        if ( // Using public methods for both rectangles
+            this.getX1() > otherRect.getX2() ||
+            this.getX2() < otherRect.getX1() ||
+            this.getY1() > otherRect.getY2()
+            this.getY2() < otherRect.getY1() 
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+public class Client {
+    public static void main(String[] args) {
+        Rectangle r1 = new Rectangle(5, 5, 8, 4);
+        Rectangle r2 = new Rectangle(7, 7, 3, 9);
+
+        // Using a public static method
+        boolean collides = Rectangle.intersects(r1, r2);
+
+        if (collides) {
+            System.out.println("The rectangles are colliding!");
+        } else {
+            System.out.println("The rectangles are not colliding!");
+        }
+    }
+}
+```
+
 ## Constructors and Method Overloading
+This section is pretty simple once you get the basics down. In order to consider a method or constructor *overloaded*, there must be at least two implementations of the same method with different parameters and/or return types. Here's a simple example of how it all works:
+```java
+class Rectangle {
+    private double x = 0;
+    private double y = 0;
+    private double w = 0;
+    private double h = 0;
+
+    public Rectangle(double x, double y, double size) {
+        this.x = x;
+        this.y = y;
+        this.w = size;
+        this.h = size;
+    }
+
+    public Rectangle(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.w = width;
+        this.h = height;
+    }
+
+    
+}
+```
+
 ## Default Methods
 ## Instance Variables and Multiple Classes
 ## Inhereted Classes and Polymorphism
