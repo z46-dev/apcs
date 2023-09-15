@@ -222,4 +222,91 @@ public class Circle {
 The rest of these methods are often used for utility and multi-threading purposes under the hood in java.
 
 ## Instance Variables and Multiple Classes
+An **instance variable** is another way of talking about a *private non-static* variable. These are variables that are unique to the *instance* of the class they are created in. If they are private, you should use getters/setters to access them outside of the class. Here's what that looks like:
+```java
+public class Flute {
+    public int highestNote = 0;
+    public int lowestNote = 0;
+    public String ownerName = "";
+
+    public Flute(String name) {
+        this.name = name;
+        this.highestNote = 8 /* octave */ * 7; // C7
+        this.highestNote = 8 /* octave */ * 4; // C4
+
+        // highestNote, lowestNote, and ownerName are all instance variables.
+        // If I were to create two different flutes, they could have different values, and each value would be bound to its creator, not any other Flute object.
+
+        // Remember, static values are NOT instance variables.
+    }
+}
+```
+
+So what if we have multiple classes? How does this all tie together? Well all in all, you just gotta visualize it all together!
+
+Here's my implementation of the Coin program:
+
+```java
+// coin.java
+package Coin;
+
+public class Coin {
+    public static final int HEADS = 0;
+    public static final int TAILS = 1;
+
+    private int face;
+
+    public Coin() {
+        flip();
+    }
+    
+    public void flip() {
+        face = (int) (Math.random() * 2);
+    }
+
+    public boolean isHeads() {
+        return face == HEADS;
+    }
+
+    public String toString() {
+        if (face == HEADS) {
+            return "Heads";
+        }
+
+        return "Tails";
+    }
+}
+```
+
+```java
+// coinClient.java
+package Coin;
+
+public class CoinClient {
+    public static void main(String[] args) {
+        Coin coin = new Coin();
+
+        int heads = 0,
+            tails = 0;
+
+        for (int i = 0; i < 10; i++) {
+            coin.flip();
+
+            if (coin.isHeads()) {
+                heads++;
+            } else {
+                tails++;
+            }
+        }
+
+        System.out.println("Heads: " + heads);
+        System.out.println("Tails: " + tails);
+
+        System.out.println(coin);
+    }
+}
+```
+
+These two files show how you can have multiple classes acting with one another.
+
 ## Inhereted Classes and Polymorphism
