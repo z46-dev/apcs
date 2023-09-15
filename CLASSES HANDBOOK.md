@@ -310,3 +310,67 @@ public class CoinClient {
 These two files show how you can have multiple classes acting with one another.
 
 ## Inhereted Classes and Polymorphism
+Sometimes, we can create a blueprint class that we might want to make more specific "child" classes off of. When we do this, it is called Polymorphism. For instance, take some animals: Dog, Cat, Pig. All of these can have names, but they might make different sounds or do different things. This is when we could split up classes using **Inheretence**.
+
+```java
+public class Animal {
+    private String name = "";
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public String toString() {
+        return "my name is " + this.name;
+    }
+}
+
+public class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+
+    public String toString() {
+        return "I am a dog, and " + super.toString();
+    }
+}
+
+public class Cat extends Animal {
+    public Cat(String name) {
+        super(name);
+    }
+
+    public String toString() {
+        return "I am a cat, and " + super.toString();
+    }
+}
+
+public class Pig extends Animal {
+    public Pig(String name) {
+        super(name);
+    }
+
+    public String toString() {
+        return "I am a pig, and " + super.toString();
+    }
+}
+
+public class Program {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Princess"); // She doesn't bite, she's a pitbull :)
+        Cat cat = new Cat("Tom");
+        Pig pig = new Pig("Gladys");
+
+        System.out.println(dog);
+        System.out.println(cat);
+        System.out.println(pig);
+    }
+}
+```
+
+So if we break this down, it's actually pretty straightforward.
+We have our "parent" class, `Animal`, and multiple child classes, which are *extensions* (hence the keyword `extends`) of `Animal`.
+
+The part `super(name);` is saying "Ok, we're a child of `Animal`, so let's call the constructor of `Animal` with the arguments for it". In the case of the dog, this means that the dog class has EVERYTHING that an instance of an animal has, and also whatever else you add.
+
+So when we overwrite the `toString()` method, we return a string and also call `super.toString();`. This means that we're calling the **NON OVERWRITTEN** version of `this.toString();`, in other words: `Animal -> (bound to dog) -> toString();`.
