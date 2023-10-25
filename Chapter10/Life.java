@@ -4,7 +4,6 @@
 // 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
 // 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-import java.sql.Time;
 import java.util.Scanner;
 // GUI
 import javax.swing.JFrame;
