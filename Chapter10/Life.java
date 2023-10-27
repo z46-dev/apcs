@@ -1,21 +1,15 @@
-// Game of Life
-// 1. Any live cell with fewer than two live neighbors dies, as if caused by under-population.
-// 2. Any live cell with two or three live neighbors lives on to the next generation.
-// 3. Any live cell with more than three live neighbors dies, as if by overcrowding.
-// 4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-
 import java.util.Scanner;
-// GUI
 import javax.swing.JFrame;
 
 public class Life {
     private static Scanner input;
     private static boolean[] board;
     private static JFrame frame;
+    private static java.awt.Graphics g;
 
-    final private static int WIDTH = 20;
-    final private static int HEIGHT = 20;
-    final private static int CUBE_SIZE = 40;
+    final private static int WIDTH = 32;
+    final private static int HEIGHT = 32;
+    final private static int CUBE_SIZE = 20;
 
     private static boolean tickBegan;
 
@@ -30,11 +24,11 @@ public class Life {
     }
 
     public static boolean get(int x, int y) {
-        return board[x + y * 20];
+        return board[x + y * HEIGHT];
     }
 
     public static void set(int x, int y, boolean value) {
-        board[x + y * 20] = value;
+        board[x + y * HEIGHT] = value;
     }
 
     public static int getNeighbors(int x, int y) {
@@ -82,12 +76,9 @@ public class Life {
         frame.setUndecorated(true);
         frame.setVisible(true);
 
-        // Let the user click on the board to set live cells
         frame.getContentPane().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // If it's a right click, finish
                 if (evt.getButton() == java.awt.event.MouseEvent.BUTTON3) {
-                    // Tick at 60 FPS
                     beginTickLoop();
                     return;
                 }
@@ -116,7 +107,6 @@ public class Life {
         }
 
         tickBegan = true;
-        // Use a timer to tick every 1/60th of a second
         javax.swing.Timer timer = new javax.swing.Timer(1000 / 10, new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tick();
@@ -151,15 +141,19 @@ public class Life {
     }
 
     public static void printBoard() {
-        // Print the board on the frame
+        if (g == null) {
+            g = frame.getGraphics();
+        }
+
         for (int i = 0; i < board.length; i++) {
             int x = i % WIDTH;
             int y = i / HEIGHT;
 
             if (get(x, y)) {
-                frame.getGraphics().fillRect(x * CUBE_SIZE, y * CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+                g.setColor(java.awt.Color.getHSBColor((float)Math.max((double)x/(double)WIDTH, (double)y/(double)HEIGHT), 1.0f, 0.75f));
+                g.fillRect(x * CUBE_SIZE, y * CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
             } else {
-                frame.getGraphics().clearRect(x * CUBE_SIZE, y * CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+                g.clearRect(x * CUBE_SIZE, y * CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
             }
         }
     }
