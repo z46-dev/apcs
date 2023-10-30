@@ -7,9 +7,9 @@ public class Life {
     private static JFrame frame;
     private static java.awt.Graphics g;
 
-    final private static int WIDTH = 32;
-    final private static int HEIGHT = 32;
-    final private static int CUBE_SIZE = 20;
+    final private static int WIDTH = 256;
+    final private static int HEIGHT = 256;
+    final private static int CUBE_SIZE = 4;
 
     private static boolean tickBegan;
 
@@ -18,6 +18,11 @@ public class Life {
         board = new boolean[WIDTH * HEIGHT];
         frame = new JFrame("Game of Life");
         tickBegan = false;
+
+        // Randomly place cells
+        for (int i = 0; i < board.length; i++) {
+            board[i] = Math.random() < 0.5;
+        }
 
         System.out.println("Welcome to the Game of Life!");
         inputLiveCells();
@@ -107,7 +112,7 @@ public class Life {
         }
 
         tickBegan = true;
-        javax.swing.Timer timer = new javax.swing.Timer(1000 / 10, new java.awt.event.ActionListener() {
+        javax.swing.Timer timer = new javax.swing.Timer(1000 / 60, new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tick();
             }
