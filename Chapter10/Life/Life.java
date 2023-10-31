@@ -112,7 +112,7 @@ public class Life {
         }
 
         tickBegan = true;
-        javax.swing.Timer timer = new javax.swing.Timer(1000 / 60, new java.awt.event.ActionListener() {
+        javax.swing.Timer timer = new javax.swing.Timer(1000 / 2, new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tick();
             }
