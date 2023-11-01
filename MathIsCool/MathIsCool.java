@@ -1,3 +1,5 @@
+// Hello from GitHub!
+
 package MathIsCool;
 
 import java.util.Scanner;
