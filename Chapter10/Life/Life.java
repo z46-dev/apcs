@@ -1,22 +1,20 @@
 package Life;
 
-import java.util.Scanner;
 import javax.swing.JFrame;
 
 public class Life {
-    private static Scanner input;
     private static boolean[] board;
     private static JFrame frame;
     private static java.awt.Graphics g;
+    private static javax.swing.Timer timer;
 
-    final private static int WIDTH = 256;
-    final private static int HEIGHT = 256;
-    final private static int CUBE_SIZE = 4;
+    final private static int WIDTH = 32;
+    final private static int HEIGHT = 32;
+    final private static int CUBE_SIZE = 12;
 
     private static boolean tickBegan;
 
     public static void main(String[] args) {
-        input = new Scanner(System.in);
         board = new boolean[WIDTH * HEIGHT];
         frame = new JFrame("Game of Life");
         tickBegan = false;
@@ -114,7 +112,8 @@ public class Life {
         }
 
         tickBegan = true;
-        javax.swing.Timer timer = new javax.swing.Timer(1000 / 2, new java.awt.event.ActionListener() {
+        
+        timer = new javax.swing.Timer(1000 / 2, new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tick();
             }
@@ -125,7 +124,8 @@ public class Life {
 
     public static void tick() {
         boolean[] newBoard = new boolean[board.length];
-
+        boolean allDead = true;
+        
         for (int i = 0; i < board.length; i++) {
             int x = i % WIDTH;
             int y = i / HEIGHT;
@@ -134,10 +134,12 @@ public class Life {
             if (get(x, y)) {
                 if (neighbors == 2 || neighbors == 3) {
                     newBoard[i] = true;
+                    allDead = false;
                 }
             } else {
                 if (neighbors == 3) {
                     newBoard[i] = true;
+                    allDead = false;
                 }
             }
         }
@@ -145,6 +147,10 @@ public class Life {
         board = newBoard;
 
         printBoard();
+
+        if (allDead) {
+            finish();
+        }
     }
 
     public static void printBoard() {
@@ -166,8 +172,8 @@ public class Life {
     }
 
     public static void finish() {
-        input.close();
         frame.dispose();
+        timer.stop();
         System.out.println("Thanks for playing!");
         System.exit(0);
     }
