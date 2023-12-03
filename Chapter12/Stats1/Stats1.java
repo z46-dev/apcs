@@ -1,6 +1,16 @@
 import java.io.*;
 import java.util.ArrayList;
 
+class StatsScore {
+    public int score = 0;
+    public String name = "";
+
+    public StatsScore(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+}
+
 public class Stats1 {
     public static void main(String[] args) {
         File file = new File("\\\\fluorine\\2024\\HOME\\20240629\\CompSci\\Chapter12\\data\\test1.dat");
@@ -39,9 +49,9 @@ public class Stats1 {
 
         // Display scores
         int lowestScore = 10000,
-            highestScore = 0,
-            avgScore = 0;
-            
+                highestScore = 0,
+                avgScore = 0;
+
         for (StatsScore score : scores) {
             System.out.println(score.name + ": " + score.score);
 

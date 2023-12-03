@@ -1,6 +1,16 @@
 import java.io.*;
 import java.util.Scanner;
 
+class StatsScore {
+    public int score = 0;
+    public String name = "";
+
+    public StatsScore(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+}
+
 public class Stats2 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -22,6 +32,8 @@ public class Stats2 {
 
             scores[i] = new StatsScore(name, score);
         }
+
+        input.close();
 
         File file = new File(fileName);
         if (!file.exists()) {
