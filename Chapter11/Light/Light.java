@@ -26,11 +26,21 @@ public class Light {
                 frame.dispose();
                 System.exit(0);
             }
+
+            // If it's a number key
+            if (evt.getKeyCode() >= java.awt.event.KeyEvent.VK_0 && evt.getKeyCode() <= java.awt.event.KeyEvent.VK_9) {
+                int number = evt.getKeyCode() - java.awt.event.KeyEvent.VK_0;
+                
+                WIDTH = number;
+                HEIGHT = number;
+
+                board = new boolean[WIDTH * HEIGHT];
+            }
         }
     };
 
-    final private static int WIDTH = 7;
-    final private static int HEIGHT = 7;
+    private static int WIDTH = 7;
+    private static int HEIGHT = 7;
     final private static int CUBE_SIZE = 64;
 
     public static void main(String[] args) {
