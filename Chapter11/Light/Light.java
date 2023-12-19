@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Scanner;
 
 public class Light {
     private static boolean[] board;
@@ -19,32 +20,12 @@ public class Light {
             tick();
         }
     };
-    
-    private static KeyListener keyListener = new KeyAdapter() {
-        public void keyPressed(java.awt.event.KeyEvent evt) {
-            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ESCAPE) {
-                frame.dispose();
-                System.exit(0);
-            }
-
-            // If it's a number key
-            if (evt.getKeyCode() >= java.awt.event.KeyEvent.VK_0 && evt.getKeyCode() <= java.awt.event.KeyEvent.VK_9) {
-                int number = evt.getKeyCode() - java.awt.event.KeyEvent.VK_0;
-                
-                WIDTH = number;
-                HEIGHT = number;
-
-                board = new boolean[WIDTH * HEIGHT];
-            }
-        }
-    };
 
     private static int WIDTH = 7;
     private static int HEIGHT = 7;
     final private static int CUBE_SIZE = 64;
 
     public static void main(String[] args) {
-        board = new boolean[WIDTH * HEIGHT];
         frame = new JFrame("Game of Light");
 
         System.out.println("Welcome to the Game of Light!");
@@ -75,7 +56,16 @@ public class Light {
         frame.setVisible(true);
 
         frame.getContentPane().addMouseListener(mouseListener);
-        frame.getContentPane().addKeyListener(null);
+
+        // Get board size from a popup
+        String input = JOptionPane.showInputDialog(frame, "Enter board size (e.g. 7x7):", "Game of Light", JOptionPane.QUESTION_MESSAGE);
+        String[] size = input.split("x");
+        WIDTH = Integer.parseInt(size[0]);
+        HEIGHT = Integer.parseInt(size[1]);
+        frame.setSize(WIDTH * CUBE_SIZE, HEIGHT * CUBE_SIZE);
+
+        // Get board
+        board = new boolean[WIDTH * HEIGHT];
 
         tick();
     }
@@ -117,6 +107,16 @@ public class Light {
 
             g.setColor(get(x, y) ? Color.YELLOW : Color.BLACK);
             g.fillRect(x * CUBE_SIZE, y * CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+        }
+
+        // Grid
+        g.setColor(Color.GRAY);
+        for (int i = 0; i < WIDTH; i++) {
+            g.drawLine(i * CUBE_SIZE, 0, i * CUBE_SIZE, HEIGHT * CUBE_SIZE);
+        }
+
+        for (int i = 0; i < HEIGHT; i++) {
+            g.drawLine(0, i * CUBE_SIZE, WIDTH * CUBE_SIZE, i * CUBE_SIZE);
         }
     }
 
