@@ -1,3 +1,5 @@
 {
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "///": "Report errors for all java files, even non-project ones",
+    "java.errors.incompleteClasspath.severity": "ignore"
 }
