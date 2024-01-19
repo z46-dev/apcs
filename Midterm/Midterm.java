@@ -222,31 +222,25 @@ public class Midterm {
 
     public static void placePits() {
         int pitCount = 10;
-        // Position sampling
         external: for (; pitCount > 0;) {
             int x = (int) (Math.random() * 10);
             int y = (int) (Math.random() * 10);
             int pos = x + y * 10;
-
-            // If not empty, continue
             if (rooms[pos].isPit) {
                 continue external;
             }
 
-            // Check for adjacent pits with a "radius" of 2
             internal: for (int i = 0; i < 100; i++) {
                 if (i == pos) {
                     continue internal;
                 }
 
                 double dist = Math.sqrt(Math.pow(rooms[i].x - x, 2) + Math.pow(rooms[i].y - y, 2));
-
                 if (dist <= 2 && rooms[i].isPit) {
                     continue external;
                 }
             }
 
-            // If we got here, we can place a pit
             rooms[pos].isPit = true;
             pitCount--;
         }
@@ -271,29 +265,29 @@ public class Midterm {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 500, 650);
 
-        // Draw the rooms & items
-        for (int i = 0; i < 100; i++) {
-            int x = i % 10;
-            int y = i / 10;
+        // // Draw the rooms & items
+        // for (int i = 0; i < 100; i++) {
+        //     int x = i % 10;
+        //     int y = i / 10;
 
-            if (rooms[i].item != null) {
-                g.translate(x * 50 + 25, y * 50 + 25);
-                g.scale(.25, .25);
-                rooms[i].item.draw(g);
-                g.scale(4, 4);
-                g.translate(-x * 50 - 25, -y * 50 - 25);
-            }
-        }
+        //     if (rooms[i].item != null) {
+        //         g.translate(x * 50 + 25, y * 50 + 25);
+        //         g.scale(.25, .25);
+        //         rooms[i].item.draw(g);
+        //         g.scale(4, 4);
+        //         g.translate(-x * 50 - 25, -y * 50 - 25);
+        //     }
+        // }
 
         // Draw the pits
-        g.setColor(Color.GRAY);
-        for (int i = 0; i < 100; i++) {
-            int x = i % 10;
-            int y = i / 10;
-            if (rooms[i].isPit) {
-                g.fillRect(x * 50, y * 50, 50, 50);
-            }
-        }
+        // g.setColor(Color.GRAY);
+        // for (int i = 0; i < 100; i++) {
+        //     int x = i % 10;
+        //     int y = i / 10;
+        //     if (rooms[i].isPit) {
+        //         g.fillRect(x * 50, y * 50, 50, 50);
+        //     }
+        // }
 
         // Draw the dragon
         g.setColor(Color.RED);
