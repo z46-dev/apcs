@@ -158,10 +158,33 @@ public class Midterm {
                         x++;
                         break;
                     case java.awt.event.KeyEvent.VK_F:
+                        // Prompt for location or cancel
+                        String[] options = { "Up", "Left", "Down", "Right", "Cancel" };
+                        int result = JOptionPane.showOptionDialog(frame, "Where do you want to fire?", "Fire arrow", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+                        if (result == 4) {
+                            break;
+                        }
+
                         if (player.hasArrow) {
                             player.hasArrow = false;
 
-                            if (getRoom(x - 1, y).isDragon || getRoom(x + 1, y).isDragon || getRoom(x, y - 1).isDragon || getRoom(x, y + 1).isDragon) {
+                            switch (result) {
+                                case 0:
+                                    y--;
+                                    break;
+                                case 1:
+                                    x--;
+                                    break;
+                                case 2:
+                                    y++;
+                                    break;
+                                case 3:
+                                    x++;
+                                    break;
+                            }
+
+                            if (getRoom(x, y).isDragon) {
                                 JOptionPane.showMessageDialog(frame, "You killed the dragon!", "You win!", JOptionPane.INFORMATION_MESSAGE);
                                 System.exit(0);
                             } else {
@@ -279,7 +302,7 @@ public class Midterm {
         //     }
         // }
 
-        // Draw the pits
+        // // Draw the pits
         // g.setColor(Color.GRAY);
         // for (int i = 0; i < 100; i++) {
         //     int x = i % 10;
@@ -289,15 +312,15 @@ public class Midterm {
         //     }
         // }
 
-        // Draw the dragon
-        g.setColor(Color.RED);
-        for (int i = 0; i < 100; i++) {
-            int x = i % 10;
-            int y = i / 10;
-            if (rooms[i].isDragon) {
-                g.fillOval(x * 50, y * 50, 50, 50);
-            }
-        }
+        // // Draw the dragon
+        // g.setColor(Color.RED);
+        // for (int i = 0; i < 100; i++) {
+        //     int x = i % 10;
+        //     int y = i / 10;
+        //     if (rooms[i].isDragon) {
+        //         g.fillOval(x * 50, y * 50, 50, 50);
+        //     }
+        // }
 
         // Linear grid
         BasicStroke stroke = new BasicStroke(2);
