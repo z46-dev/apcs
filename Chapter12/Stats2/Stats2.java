@@ -16,7 +16,7 @@ public class Stats2 {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Enter the name of the file to create: ");
-        String fileName = "\\\\fluorine\\2024\\HOME\\20240629\\CompSci\\Chapter12\\data\\" + input.nextLine();
+        String fileName = "./data/" + input.nextLine();
 
         System.out.print("Enter the number of students: ");
         int numStudents = input.nextInt();
