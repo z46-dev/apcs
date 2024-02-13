@@ -1,0 +1,3 @@
+run
+display
+eat
