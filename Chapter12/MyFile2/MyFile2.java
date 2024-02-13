@@ -4,9 +4,10 @@ import java.io.*;
 public class MyFile2 {
     public static void main(String[] args) {
         final String FILENAME = "zzz.txt";
+        File root = new File(System.getProperty("user.dir"));
 
         // Create the file
-        File file = new File(FILENAME);
+        File file = new File(root, "/Chapter12/data/" + FILENAME);
 
         // Check if the file exists
         if (file.exists()) {

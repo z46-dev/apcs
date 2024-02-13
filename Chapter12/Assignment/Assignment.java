@@ -3,7 +3,8 @@ import java.io.*;
 
 public class Assignment {
     public static void main(String[] args) {
-        File file = new File("\\\\fluorine/2024/HOME/20240629/CompSci/Chapter12/data/assignment.txt");
+        File root = new File(System.getProperty("user.dir"));
+        File file = new File(root, "/Chapter12/data/assignment.txt");
 
         if (!file.exists()) {
             System.out.println("File does not exist!");

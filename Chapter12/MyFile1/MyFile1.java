@@ -5,7 +5,6 @@ public class MyFile1 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         File root = new File(System.getProperty("user.dir"));
-        System.out.println("Root: " + root);
 
         String filename;
 

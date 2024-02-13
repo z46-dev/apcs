@@ -13,7 +13,8 @@ class StatsScore {
 
 public class Stats1 {
     public static void main(String[] args) {
-        File file = new File("\\\\fluorine\\2024\\HOME\\20240629\\CompSci\\Chapter12\\data\\test1.dat");
+        File root = new File(System.getProperty("user.dir"));
+        File file = new File(root, "/Chapter12/data/test1.dat");
 
         if (!file.exists()) {
             System.out.println("File does not exist!");
