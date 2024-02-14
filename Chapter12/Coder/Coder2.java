@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Coder2 {
-    final public static int SHIFT = 3;
+    final public static int SHIFT = 5;
 
     public static void main(String[] args) {
         File root = new File(System.getProperty("user.dir"));

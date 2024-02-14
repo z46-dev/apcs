@@ -25,7 +25,7 @@ public class ApplicationDoc {
                 while (fileScanner.hasNextLine()) {
                     String line = fileScanner.nextLine();
 
-                    if (line.contains("/**")) {
+                    if (line.contains("/*")) {
                         isInJavadoc = true;
                         line = line.replace("/**", "");
                         line = line.replace("/*", "");
