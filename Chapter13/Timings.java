@@ -1,11 +1,15 @@
 package Chapter13;
 
 public class Timings {
-    public static void main(String[] args) {
-        int[][] tests = new int[100][];
+    final static int TESTS_SIZE = 1000;
+    final static int ARRAY_SIZE = 1000;
+    final static int VALUE_RANGE = 0xFFFF;
 
-        for (int i = 0; i < 100; i++) {
-            tests[i] = generateRandomArray(1000);
+    public static void main(String[] args) {
+        int[][] tests = new int[TESTS_SIZE][];
+
+        for (int i = 0; i < TESTS_SIZE; i++) {
+            tests[i] = generateRandomArray(ARRAY_SIZE);
         }
 
         long insertionSortTotal = 0,
@@ -24,7 +28,7 @@ public class Timings {
         int[] array = new int[size];
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = (int) (Math.random() * 100);
+            array[i] = (int) (Math.random() * VALUE_RANGE);
         }
 
         return array;
