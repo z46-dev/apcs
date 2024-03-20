@@ -2,26 +2,32 @@ package Chapter13;
 
 public class ObjectsInsertionSort {
     public static void main(String[] args) {
-        Circle[] circles = new Circle[10];
+        String[] strings = new String[10];
 
-        for (int i = 0; i < circles.length; i++) {
-            circles[i] = new Circle(Math.round(Math.random() * 100 * 100.0) / 100.0);
+        for (int i = 0; i < strings.length; i++) {
+            String s = "";
+
+            for (int j = 0; j < 5; j++) {
+                s += (char) (Math.random() * 26 + 65);
+            }
+
+            strings[i] = s;
         }
 
         System.out.println("Before sorting: ");
-        print(circles);
+        print(strings);
 
-        Sorter.insertionSort(circles);
+        Sorter.insertionSort(strings);
 
         System.out.println("After sorting: ");
-        print(circles);
+        print(strings);
     }
 
-    public static void print(Circle[] circles) {
-        for (int i = 0; i < circles.length; i++) {
-            System.out.print(circles[i].getRadius());
+    public static void print(String[] strings) {
+        for (int i = 0; i < strings.length; i++) {
+            System.out.print(strings[i]);
 
-            if (i < circles.length - 1) {
+            if (i < strings.length - 1) {
                 System.out.print(", ");
             }
         }
