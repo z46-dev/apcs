@@ -1,5 +1,7 @@
 package Chapter13;
 
+import java.util.Scanner;
+
 public class Knapsack {
     public static void main(String[] args) {
         int[] weights = new int[6];
@@ -9,8 +11,6 @@ public class Knapsack {
             weights[i] = (int) (Math.random() * 31) + 1;
             sum += weights[i];
         }
-
-        int goal = (int) (Math.random() * sum) + 1;
 
         System.out.println("Weights: ");
         for (int i = 0; i < weights.length; i++) {
@@ -23,6 +23,21 @@ public class Knapsack {
 
             System.out.println();
         }
+
+        int goal = 0;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (goal <= 0 || goal > sum) {
+            System.out.print("Enter a goal between 1 and " + sum + ", or -1 to pick a random number: ");
+            goal = scanner.nextInt();
+
+            if (goal == -1) {
+                goal = (int) (Math.random() * sum) + 1;
+            }
+        }
+
+        scanner.close();
 
         System.out.println("Goal: " + goal);
 
