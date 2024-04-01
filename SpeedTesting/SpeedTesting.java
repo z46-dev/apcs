@@ -2,7 +2,7 @@ package SpeedTesting;
 
 public class SpeedTesting {
     public static void main(String[] args) {
-        int n = 1000000;
+        int n = 10000000;
         long initTime = 0,
             runTime = 0;
 

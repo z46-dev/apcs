@@ -9,7 +9,7 @@ fn parse_time(time: i128) -> f64 {
 }
 
 fn main() {
-    const N: u32 = 1_000_000;
+    const N: u32 = 10_000_000;
 
     // Initialize the test
     let init_time = get_time();

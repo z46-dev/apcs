@@ -9,7 +9,7 @@ char* parseTime(long time) {
 }
 
 int main() {
-    int n = 1000000;
+    int n = 10000000;
     long initTime = 0;
     long testTime = 0;
 

@@ -1,4 +1,4 @@
-let n = 1000000,
+let n = 10000000,
     initTime = 0,
     testTime = 0;
 

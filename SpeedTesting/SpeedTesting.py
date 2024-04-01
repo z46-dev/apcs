@@ -1,6 +1,6 @@
 import time
 
-n = 1000000
+n = 10000000
 initTime = 0
 testTime = 0
 

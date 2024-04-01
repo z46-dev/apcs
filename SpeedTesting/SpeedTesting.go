@@ -10,7 +10,7 @@ func parseTime(time int64) string {
 }
 
 func main() {
-	var n int = 1000000
+	var n int = 10000000
 	var initTime, testTime int64 = 0, 0
 
 	// Initialize the test
