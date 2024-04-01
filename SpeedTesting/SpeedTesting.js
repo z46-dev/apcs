@@ -4,7 +4,10 @@ let n = 1000000,
 
 // Initialize the test
 initTime = performance.now();
-const arr = new Array(n).map((_, i) => i);
+const arr = [];
+for (let i = 0; i < n; i ++) {
+    arr.push(n);
+}
 initTime = performance.now() - initTime;
 
 // Run the test
