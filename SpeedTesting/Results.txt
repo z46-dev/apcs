@@ -1,29 +1,29 @@
 Speed Testing
 
 Testing C
-Init time: 2.53ms
-Test time: 2.25ms
+Init time: 2.73ms
+Test time: 2.70ms
 
 Testing Go
-Init time:  1.41ms
-Test time:  0.61ms
+Init time:  1.45ms
+Test time:  0.65ms
 
 Testing Java
-Init time: 7.20ms
-Test time: 5.38ms
+Init time: 6.92ms
+Test time: 5.14ms
 
 Testing Node.js
-Init time: 9.81ms
-Test time: 18.15ms
+Init time: 12.66ms
+Test time: 28.62ms
 
 Testing Bun
-Init time: 36.38ms
-Test time: 18.38ms
+Init time: 40.68ms
+Test time: 20.73ms
 
 Testing Python3
-Init time: 32.75ms
-Test time: 116.74ms
+Init time: 38.23ms
+Test time: 109.23ms
 
 Testing Rust
-Init time: -0.2ms
-Test time: 0.3ms
+Init time: 0.3ms
+Test time: 0.2ms
